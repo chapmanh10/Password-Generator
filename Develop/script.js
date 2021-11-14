@@ -10,14 +10,14 @@ var passwordLength = function () {
   }
 };
 
-
+//Yes Or No Generic function 
 var yesOrNoAnswer = function (promptText) {
 
-  var yesOrNO = null;
+  var yesOrNO = window.prompt(promptText);
+  yesOrNO = yesOrNO.toUpperCase();
 
   if (yesOrNO !== null && (yesOrNO === "Y" || yesOrNO === "N")) {
-    yesOrNO = window.prompt(promptText);
-    yesOrNO = upperCaseYN.toUpperCase();
+
     if (yesOrNO === "Y") {
       return true;
     }
@@ -26,65 +26,40 @@ var yesOrNoAnswer = function (promptText) {
     }
   }
   else {
+    window.alert("INVALID! Please enter Y or N to answer")
     return yesOrNoAnswer(promptText);
   }
 
 }
 
-
-
 //Special characters, numbers, uppercase, and lowercase
 var passwordCharacters = function () {
+  var characterConfig = {
+    numbers: yesOrNoAnswer("Do you want you password to include numbers? \n\r Enter \"Y\" for yes or \"N\" for no."),
+    uppercase: yesOrNoAnswer("Do you want your password to conatin uppercase letters? \n\r Enter \"Y\" for yes or \"N\" for no."),
+    lowercase: yesOrNoAnswer("Do you want your password to conatin lowercase letters? \n\r Enter \"Y\" for yes or \"N\" for no."),
+    specialCharacters: yesOrNoAnswer("Do you want your password to conatin special characters? \n\r Enter \"Y\" for yes or \"N\" for no."),
+  }
+  return characterConfig;
+};
+  
+//main generate funtction when press button
+var generatePassword = function () {
+  var chosenLength = 8;
   var characterConfig = {
     numbers: true,
     uppercase: true,
     lowercase: true,
-    specialCharacters: true,
+    specialCharacters: true, 
   }
-
-  //Do you want numbers?
-  var numberYN = null;
-
-  while (numberYN === null && (numberYN !== "Y" || numberYN !== "N")) {
-    numberYN = window.prompt("Do you want you password to include numbers? \n\r Enter \"Y\" for yes or \"N\" for no.");
-    numberYN = numberYN.toUpperCase();
-  }
-  if (numberYN === "Y") {
-    characterConfig.numbers = true;
-  }
-  else {
-    characterConfig.numbers = false;
-    console.log(characterConfig)
-  }
-
-  // Do you want uppercase letters?
-  var upperCaseYN = null;
-
-  while (upperCaseYN === null && (upperCaseYN !== "Y" || upperCaseYN !== "N")) {
-    upperCaseYN = window.prompt("Do you want your password to conatin uppercase letters? \n\r Enter \"Y\" for yes or \"N\" for no.")
-    upperCaseYN = upperCaseYN.toUpperCase();
-  }
-  if (upperCaseYN === "Y") {
-    characterConfig.uppercase = true;
-  }
-  else {
-    characterConfig.uppercase = false;
-  }
-
-};
-
-
-//main generate funtction when press button
-var generatePassword = function () {
-  var chosenLength = 8;
   var criteriaChoice = window.prompt("Choose you password criteria by typing 1, 2, or 3\n\r 1 - password length requirements \n\r 2 - include special characters, numbers, uppercase, and lowercase   \n\r 3 - both");
   if (criteriaChoice != null && criteriaChoice <= 3 && criteriaChoice > 0) {
     switch (criteriaChoice) {
       case "1": chosenLength = passwordLength();
         break;
-      case "2": passwordCharacters();
+      case "2": characterConfig = passwordCharacters();
         break;
-      case "3": passwordLength(), passwordCharacters();
+      case "3": chosenLength = passwordLength(), characterConfig = passwordCharacters();
         break
     }
   }
