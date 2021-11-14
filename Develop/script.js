@@ -10,6 +10,15 @@ var passwordLength = function () {
   }
 };
 
+//Create Password 
+var createPassword = function (chosenLength, characterConfig) {
+var allNumb = [0,1,2,3,4,5,6,7,8,9]
+var allLower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+var allUpper = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+var allSpecial = ["!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]
+}
+
+
 //Yes Or No Generic function 
 var yesOrNoAnswer = function (promptText) {
 
@@ -44,7 +53,6 @@ if (characterConfig.numbers === false && characterConfig.uppercase === false && 
   window.alert("You must chose at least one criteria to include in your password!")
   return passwordCharacters();
 } 
-
   return characterConfig;
 };
   
