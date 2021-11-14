@@ -18,19 +18,36 @@ var passwordCharacters = function () {
     lowercase: true,
     specialCharacters: true,
   }
-  var numberYN = window.prompt("Do you want you password to include numbers? \n\r Enter \"Y\" for yes or \"N\" for no.");
-  numberYN = numberYN.toUpperCase();
-  if (numberYN != null && (numberYN === "Y" || numberYN === "N")) {
-    if (numberYN === "Y") {
-      characterConfig.numbers = true;
-    }
-    else {
-      characterConfig.numbers = false;
-    }
+
+  //Do you want numbers?
+  var numberYN = null;
+
+  while (numberYN === null && (numberYN !== "Y" || numberYN !== "N")) {
+    numberYN = window.prompt("Do you want you password to include numbers? \n\r Enter \"Y\" for yes or \"N\" for no.");
+    numberYN = numberYN.toUpperCase();
+  }
+  if (numberYN === "Y") {
+    characterConfig.numbers = true;
   }
   else {
-    
+    characterConfig.numbers = false;
+    console.log(characterConfig)
   }
+
+  // Do you want uppercase letters?
+  var upperCaseYN = null;
+
+  while (upperCaseYN === null && (upperCaseYN !== "Y" || upperCaseYN !== "N")) {
+    upperCaseYN = window.prompt("Do you want your password to conatin uppercase letters? \n\r Enter \"Y\" for yes or \"N\" for no.")
+    upperCaseYN = upperCaseYN.toUpperCase();
+  }
+  if (upperCaseYN === "Y") {
+    characterConfig.uppercase = true ;
+  }
+  else {
+    characterConfig.uppercase = false;
+  }
+
 };
 
 
