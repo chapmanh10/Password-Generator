@@ -40,6 +40,11 @@ var passwordCharacters = function () {
     lowercase: yesOrNoAnswer("Do you want your password to conatin lowercase letters? \n\r Enter \"Y\" for yes or \"N\" for no."),
     specialCharacters: yesOrNoAnswer("Do you want your password to conatin special characters? \n\r Enter \"Y\" for yes or \"N\" for no."),
   }
+if (characterConfig.numbers === false && characterConfig.uppercase === false && characterConfig.lowercase === false && characterConfig.specialCharacters === false) {
+  window.alert("You must chose at least one criteria to include in your password!")
+  return passwordCharacters();
+} 
+
   return characterConfig;
 };
   
@@ -52,7 +57,7 @@ var generatePassword = function () {
     lowercase: true,
     specialCharacters: true, 
   }
-  var criteriaChoice = window.prompt("Choose you password criteria by typing 1, 2, or 3\n\r 1 - password length requirements \n\r 2 - include special characters, numbers, uppercase, and lowercase   \n\r 3 - both");
+  var criteriaChoice = window.prompt("Choose you password criteria by typing 1, 2, or 3\n\r 1 - I want to chose the length of my password \n\r 2 - I want my password to include special characters, numbers, uppercase, and or lowercase   \n\r 3 - both");
   if (criteriaChoice != null && criteriaChoice <= 3 && criteriaChoice > 0) {
     switch (criteriaChoice) {
       case "1": chosenLength = passwordLength();
