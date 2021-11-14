@@ -10,6 +10,29 @@ var passwordLength = function () {
   }
 };
 
+
+var yesOrNoAnswer = function (promptText) {
+
+  var yesOrNO = null;
+
+  if (yesOrNO !== null && (yesOrNO === "Y" || yesOrNO === "N")) {
+    yesOrNO = window.prompt(promptText);
+    yesOrNO = upperCaseYN.toUpperCase();
+    if (yesOrNO === "Y") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  else {
+    return yesOrNoAnswer(promptText);
+  }
+
+}
+
+
+
 //Special characters, numbers, uppercase, and lowercase
 var passwordCharacters = function () {
   var characterConfig = {
@@ -42,7 +65,7 @@ var passwordCharacters = function () {
     upperCaseYN = upperCaseYN.toUpperCase();
   }
   if (upperCaseYN === "Y") {
-    characterConfig.uppercase = true ;
+    characterConfig.uppercase = true;
   }
   else {
     characterConfig.uppercase = false;
