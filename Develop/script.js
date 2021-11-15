@@ -12,12 +12,34 @@ var passwordLength = function () {
 
 //Create Password 
 var createPassword = function (chosenLength, characterConfig) {
-var allNumb = [0,1,2,3,4,5,6,7,8,9]
+var password = ""
+var allNumb = ["0","1","2","3","4","5","6","7","8","9"]
 var allLower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 var allUpper = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 var allSpecial = ["!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]
-}
 
+while (password.length < chosenLength) {
+if (characterConfig.numbers) {
+var chosenIndex = Math.floor(Math.random() * 10);
+password += allNumb[chosenIndex];
+}
+if (characterConfig.lowercase) {
+var chosenLower = Math.floor(Math.random() * 25);
+password += allLower[chosenLower];
+}
+if (characterConfig.uppercase) {
+var chosenUpper = Math.floor(Math.random() * 25);
+password += allUpper[chosenUpper];
+}
+if (characterConfig.specialCharacters) {
+var chosenSpecial = Math.floor(Math.random() * 32);
+password += allSpecial[chosenSpecial];
+}
+}
+ password = password.substring(0,chosenLength)
+console.log(password)
+return password;
+}
 
 //Yes Or No Generic function 
 var yesOrNoAnswer = function (promptText) {
@@ -80,6 +102,7 @@ var generatePassword = function () {
     window.alert("INVALID RESPONSE! Please enter 1, 2, or 3")
     generatePassword();
   }
+  return createPassword(chosenLength, characterConfig);
 }
 
 // Get references to the #generate element
